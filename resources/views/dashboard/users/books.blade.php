@@ -32,11 +32,13 @@
                                 {{$book->status == 0 ? "Checked-out":"Checked-in"}}
                             </td>
                             <td>
-                                @if ($book->status ==0)
-                                    <a href="" class="">Check In</a>
+                                @if ($book->status == 0)
+                                    <a href="{{route('user.book.checkIn',$book->id)}}" class="" >Check In</a>
                                 @else
-
+                                <a href="{{route('user.book.checkOut',$book->book_id)}}" class="" >Check Out</a>
                                 @endif
+
+
                             </td>
                         </tr>
                         @endforeach

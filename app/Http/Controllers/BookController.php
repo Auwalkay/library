@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\UserBook;
 use Session;
+use Auth;
+use Carbon\Carbon;
 
 class BookController extends Controller
 {
@@ -107,7 +109,37 @@ class BookController extends Controller
     {
         $books = UserBook::where('status',0)->get();
 
-        return $books;
+        return view('dashboard.books.checkedOut')->with('books',$books);
+        //return $books;
+    }
+
+    public function checkIn(UserBook $book){
+
+
+
+
+            $book->status =1;
+            $book->save();
+            Session::flash("success","Book Checked IN");
+            return redirect()->route("user.checkedBooks");
+
+
+    }
+
+    public function checkOut(Book $book)
+    {
+        // if(!in_array($book->id,Auth::user()->checkedBooksId())){
+
+        // }
+        $book->readers()->create([
+            'user_id'=> Auth::user()->id,
+            'checked_in'=> Carbon::createFromFormat('Y-m-d',date('Y-m-d')),
+            'checked_out'=>Carbon::createFromFormat('Y-m-d',date('Y-m-d'))->addDays(10),
+            'status'=>0,
+
+        ]);
+        Session::flash("success","Book Checked IN");
+            return redirect()->route("user.book.details",$book->id);
     }
 
 }

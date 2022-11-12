@@ -58,15 +58,19 @@ class BookList extends Component
     {
 
 
-        $book->readers()->create([
-            'user_id'=> Auth::user()->id,
-            'checked_in'=> Carbon::createFromFormat('Y-m-d',date('Y-m-d')),
-            'checked_out'=>Carbon::createFromFormat('Y-m-d',date('Y-m-d'))->addDays(10),
-            'status'=>0,
+        if (!in_array($book->id,Auth::user()->checkedBooksId())) {
+            $book->readers()->create([
+                'user_id'=> Auth::user()->id,
+                'checked_in'=> Carbon::createFromFormat('Y-m-d',date('Y-m-d')),
+                'checked_out'=>Carbon::createFromFormat('Y-m-d',date('Y-m-d'))->addDays(10),
+                'status'=>0,
 
-        ]);
+            ]);
+            $this->checkedBooks= Auth::user()->books->where('status',0)->pluck('book_id');
 
-        Session::flash("success","Book Checked");
+            Session::flash("success","Book Checked");
+        }
+
 
 
     }

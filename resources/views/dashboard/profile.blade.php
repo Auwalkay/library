@@ -12,7 +12,7 @@
                     <table>
                         <tr>
                             <td rowspan="3" style="padding: 6px">
-                                <img src="{{asset('/passports/'.$user->passport)}}" alt="" width="200px">
+                                <img src="{{asset('/passports/'.$user->passport)}}" alt="" width="100px">
                             </td>
                                     <th>Name</th>
                                     <td>{{ucwords($user->name)}}</td>
@@ -56,7 +56,12 @@
                             <td>{{$book->book->title}}</td>
                             <td>{{$book->checked_in}}</td>
                             <td>{{$book->checked_out}}</td>
-                            <td>{{$book->remainingDays()}}</td>
+                            <td>@if ($book->status == 0)
+                                {{$book->remainingDays()}}
+                            @else
+                                Checked-in Already
+                            @endif
+</td>
                         </tr>
                         @empty
 

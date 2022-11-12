@@ -35,10 +35,16 @@ Route::middleware("auth")->prefix("user")->group(function(){
     });
     Route::middleware('librarian')->group(function(){
         Route::get("/users/all","UserController@all")->name("users.all");
+        Route::get('/create',"UserController@create")->name("user.create");
+        Route::post('/create',"UserController@store")->name("user.store");
     });
     Route::get('/{user}/profile','UserController@profile')->name("user.profile");
     Route::get('/book/{book}/details',"BookController@details")->name("user.book.details");
+    Route::get("/book/{book}/checkIn","BookController@checkIn")->name("user.book.checkIn");
+    Route::get("/book/{book}/checkOut","BookController@checkOut")->name("user.book.checkOut");
     Route::get("/availableBooks","UserController@available_books")->name("user.available_books");
     Route::get("/checkedBooks","UserController@checkedBooks")->name("user.checkedBooks");
+    Route::get('/upload',"UserController@picture")->name('user.picture');
+    Route::post('/upload',"UserController@picture_upload")->name('user.picture.upload');
 
 });

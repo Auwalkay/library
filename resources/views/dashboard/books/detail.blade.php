@@ -52,6 +52,8 @@
                         <a href="{{route('user.book.edit',$book->id)}}" class="btn btn-primary">Edit</a>
                     @elseif(Auth::user()->user_type_id == 2)
 
+
+
                     @endif
 
 
@@ -75,7 +77,15 @@
                             <td><a href="{{route('user.profile',$reader->user->id)}}">{{$reader->user->name}}</a> </td>
                             <td>{{$reader->checked_in}}</td>
                             <td>{{$reader->checked_out}}</td>
-                            <td>{{$reader->remainingDays()}}</td>
+
+                            <td>
+                                @if ($reader->status == 0)
+                                    {{$reader->remainingDays()}}
+                                @else
+                                    Checked-in Already
+                                @endif
+
+                            </td>
                         </tr>
                         @empty
 

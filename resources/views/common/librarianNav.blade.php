@@ -30,13 +30,17 @@
                                     <a class="nav-link" href="{{route('users.all')}}">All Users</a>
 
                                 </nav>
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="{{route('user.create')}}">Add Librarian</a>
+
+                                </nav>
                             </div>
 
 
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
+                        <div class="small">Logged in as:{{Auth::user()->name}}</div>
                         Librarian
                     </div>
                 </nav>

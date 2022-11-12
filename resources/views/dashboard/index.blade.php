@@ -54,16 +54,16 @@
                         <div class="card bg-primary text-white mb-4">
                             <div class="card-body">All Books Checked</div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
-                                <a class="small text-white stretched-link" href="#">0</a>
+                                <a class="small text-white stretched-link" href="#">{{count(Auth::user()->books)}}</a>
                                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-6 col-md-6">
                         <div class="card bg-warning text-white mb-4">
-                            <div class="card-body">Books to be Checked OUT</div>
+                            <div class="card-body">Books to be Checked IN</div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
-                                <a class="small text-white stretched-link" href="#"></a>
+                                <a class="small text-white stretched-link" href="#">{{count(Auth::user()->books->where('status',0))}}</a>
                                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </div>
