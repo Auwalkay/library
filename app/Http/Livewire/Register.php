@@ -23,7 +23,7 @@ class Register extends Component
         'email'=>'required|email|unique:users,email',
         'name'=>'required|min:5|max:255|string',
         "password"=>"required|confirmed",
-        "phoneNumber"=>"required",
+        "phoneNumber"=>"required|unique:users,phoneNumber|max:11",
 
         "password"=>"required|confirmed"
     ];

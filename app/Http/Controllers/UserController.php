@@ -100,7 +100,7 @@ class UserController extends Controller
             'email'=>'required|email|unique:users,email',
             'fullName'=>'required|min:5|max:255|string',
             "password"=>"required|confirmed",
-            "phoneNumber"=>"required",
+            "phoneNumber"=>"required|unique:users,phoneNumber|max:11",
 
             "password"=>"required|confirmed"
         ]);
