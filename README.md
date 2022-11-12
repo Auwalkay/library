@@ -31,7 +31,8 @@ composer
 6. set name of the database with the appropriate user details
 7. create a database on mysql with thesame database name you choose
 8. run php artisan:migarate to create database table
-9. Run php artisan serve
+9. Run php artisan schedule:work to run the schedulers
+10. Run php artisan serve
 
 ## OR
 
@@ -39,6 +40,7 @@ composer
 2. Import the library.sql file from the project folder
 3. Open the project folder in command prompt
 4. Run php artisan server
+5. Run php artisan schedule:work to run the schedulers
 
 ## Default Login details
 
